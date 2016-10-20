@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "it.ilpixelmatto.pixelyzer"
+        minSdkVersion 23
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v13:23.3.0'
+    compile 'com.android.support:recyclerview-v7:23.0.+'
+    compile 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    compile 'it.sephiroth.android.library.overlaymenu:overlay-menu:1.0'
+    compile 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
+    compile 'com.yalantis:ucrop:2.2.0'
+    //Pohotofilters
+    compile 'com.mukesh:photofilter:1.0.0'
+    compile 'com.github.shchurov:HorizontalWheelView:0.9.5'
+    compile 'hanks.xyz:smallbang-library:0.1.2'
+
+
+}

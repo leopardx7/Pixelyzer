@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/nero">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altezzaGPU"
+        android:background="@color/ucrop_color_toolbar">
+
+
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="@dimen/larghezzaBottoni"
+            android:layout_height="@dimen/larghezzaBottoni"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="280dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_undo_black_48dp" />
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="@dimen/larghezzaBottoni"
+            android:layout_height="@dimen/larghezzaBottoni"
+
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_done_black_48dp" />
+
+
+    </LinearLayout>
+
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
+        android:id="@+id/visualizzaFotoView"
+        android:layout_width="@dimen/GPUImageSize"
+        android:layout_height="@dimen/GPUImageSize"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+
+    <jp.co.cyberagent.android.gpuimage.GPUImageView
+        android:id="@+id/visualizzaFotoConFiltri"
+        android:layout_width="@dimen/GPUImageSize"
+        android:layout_height="@dimen/GPUImageSize"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
+    <!--android:layout_marginBottom="@+id/filterCropView"-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/visualizzaFotoView"
+        android:background="@android:color/white"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:id="@+id/FiltriScrollView"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:id="@+id/FiltriLinearScrollView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/original"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+
+                    android:background="@drawable/original" />
+
+                <Button
+                    android:id="@+id/earlybird"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/earlybird" />
+
+                <Button
+                    android:id="@+id/xpro2"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/xpro2" />
+
+                <Button
+                    android:id="@+id/lomofi"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/lomofi" />
+
+                <Button
+                    android:id="@+id/sutro"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/sutro" />
+
+                <Button
+                    android:id="@+id/toaster"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/toaster" />
+
+                <Button
+                    android:id="@+id/inkwell"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/inkwell" />
+
+                <Button
+                    android:id="@+id/walden"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/walden" />
+
+                <Button
+                    android:id="@+id/hefe"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/hefe" />
+
+                <Button
+                    android:id="@+id/nashville"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/nashville" />
+
+                <Button
+                    android:id="@+id/millenovecentosettantasette"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/millenovecentosettantasette" />
+
+                <Button
+                    android:id="@+id/lordkelvin"
+                    android:layout_width="@dimen/filtri"
+                    android:layout_height="@dimen/filtri"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/lordkelvin" />
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/rotellaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
+            android:text="0"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/resetRotella"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_highlight_off_black_48dp" />
+
+        <Button
+            android:id="@+id/resetRotellaContrasto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_highlight_off_black_48dp" />
+
+        <Button
+            android:id="@+id/resetRotellaSaturazione"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_highlight_off_black_48dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rotellaLayout"
+            android:layout_marginTop="40dp"
+            android:layout_height="64dp">
+
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/rotella"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingBottom="32dp"
+                app:activeColor="@color/red7"
+                app:normalColor="@color/nero" />
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/rotellaContrasto"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingBottom="32dp"
+                android:visibility="invisible"
+                app:activeColor="@color/yellow"
+                app:normalColor="@color/nero" />
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/rotellaSaturazione"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:visibility="invisible"
+                android:paddingBottom="32dp"
+                app:activeColor="@color/blueScuro"
+                app:normalColor="@color/nero" />
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linerHorizScrolView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerHorizontal="true"
+
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+
+            <Button
+                android:id="@+id/luminosita"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:layout_marginRight="@dimen/spaziotrabottoni"
+                android:background="@drawable/ic_brightness_medium_black_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/contrasto"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:layout_marginRight="@dimen/spaziotrabottoni"
+                android:background="@drawable/ic_tonality_black_48dp"
+
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/saturazione"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:layout_marginRight="@dimen/spaziotrabottoni"
+                android:background="@drawable/ic_opacity_black_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/filtri"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:background="@drawable/ic_style_black_48dp"
+
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

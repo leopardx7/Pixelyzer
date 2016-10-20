@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Pixelyzer</string>
+    <string name="picture">Picture</string>
+    <string name="description_info">Info</string>
+    <string name="request_permission">This sample needs camera permission.</string>
+    <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+    <string name="fotocamera">Fotocamera</string>
+    <string name="luminosita">Luminosità</string>
+    <string name="taglia">Taglia e Ruota</string>
+    <string name="Gallery">Apri foto</string>
+
+
+    <string-array name="overmenuEntries">
+        <item>First Item</item>
+        <item>Second Item</item>
+        <item>Third Item</item>
+        <item>Fourth Item</item>
+        <item>Fifth Item</item>
+        <item>Sixth Item</item>
+        <item>Seventh Item</item>
+    </string-array>
+</resources>

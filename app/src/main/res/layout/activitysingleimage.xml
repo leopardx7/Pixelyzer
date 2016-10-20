@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grigio">
+
+
+    <android.opengl.GLSurfaceView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/visualizzaFoto" />
+
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barraLuminosita"
+        android:max="200"
+        android:progress="100"
+        android:visibility="invisible"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentEnd="true" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barraContrasto"
+        android:max="40"
+        android:progress="10"
+        android:visibility="invisible"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentEnd="true" />
+
+    <!-- inizio 3 seekbar tonalità -->
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barraBlu"
+        android:max="25"
+        android:progress="1"
+        android:visibility="invisible"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentEnd="true" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barraRosso"
+        android:max="25"
+        android:progress="1"
+        android:visibility="invisible"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentEnd="true" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/barraVerde"
+        android:max="25"
+        android:progress="1"
+        android:visibility="invisible"
+        android:layout_above="@+id/horizontalScrollView"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentEnd="true" />
+
+    <!-- fine 3 seekbar tonalità -->
+
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blueScuro"
+        android:id="@+id/cropScrollView"
+        android:layout_alignTop="@+id/barraLuminosita"
+        android:visibility="invisible"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/linerCropHorizScrolView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blueScuro"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/tagliaLibero"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_crop_free_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+
+            <Button
+                android:id="@+id/tagliaQuadrato"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_crop_square_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/ruota"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_crop_rotate_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/ruotaSinistra"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_rotate_left_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/ruotaDestra"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_rotate_right_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <!-- barra dei filtri -->
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blueScuro"
+        android:id="@+id/filterCropView"
+        android:layout_alignTop="@+id/barraLuminosita"
+        android:visibility="invisible"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:id="@+id/filterCropViewLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blueScuro"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/purple2"
+                android:background="@color/purple2" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/purple3"
+                android:background="@color/purple3" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/purple4"
+                android:background="@color/purple4" />
+
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/blu2"
+                android:background="@color/blu2" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/blu3"
+                android:background="@color/blu3" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/blu4"
+                android:background="@color/blu4" />
+
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/red"
+                android:background="@color/red" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/red2"
+                android:background="@color/red2" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/red3"
+                android:background="@color/red3" />
+
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/green"
+                android:background="@color/green" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/green2"
+                android:background="@color/green2" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/green3"
+                android:background="@color/green3" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/green4"
+                android:background="@color/green4" />
+
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/yellow"
+                android:background="@color/yellow" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/yellow2"
+                android:background="@color/yellow2" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/yellow3"
+                android:background="@color/yellow3" />
+
+            <SurfaceView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:id="@+id/yellow4"
+                android:background="@color/yellow4" />
+
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blueScuro"
+        android:id="@+id/horizontalScrollView"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:id="@+id/linerHorizScrolView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/blueScuro"
+            android:gravity="center"
+            android:orientation="horizontal"
+
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/tagliaRuota"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_crop_rotate_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/luminosita"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_brightness_6_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/tonalita"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_tonality_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/contrasto"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_exposure_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/filtri"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_style_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/cornice"
+                android:layout_width="70dip"
+                android:layout_height="70dip"
+                android:background="@drawable/ic_filter_frames_white_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="44"
+        android:id="@+id/valoreLuminositaContrasto"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="15pt"
+        android:visibility="invisible" />
+
+
+</RelativeLayout>

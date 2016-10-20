@@ -1,0 +1,11 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="larghezzaBottoni">30dp</dimen>
+    <dimen name="GPUImageSize">350dp</dimen>
+    <dimen name="altezzaGPU">50dp</dimen>
+    <dimen name="spaziotrabottoni">62dp</dimen>
+    <dimen name="filtri">90dp</dimen>
+
+</resources>
