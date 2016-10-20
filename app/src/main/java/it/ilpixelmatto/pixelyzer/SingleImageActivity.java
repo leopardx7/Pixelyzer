@@ -176,8 +176,6 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         findViewById(R.id.nashville).setOnClickListener(this);
         findViewById(R.id.millenovecentosettantasette).setOnClickListener(this);
         findViewById(R.id.lordkelvin).setOnClickListener(this);
-
-
         findViewById(R.id.luminosita).setOnClickListener(this);
         findViewById(R.id.contrasto).setOnClickListener(this);
         findViewById(R.id.saturazione).setOnClickListener(this);
