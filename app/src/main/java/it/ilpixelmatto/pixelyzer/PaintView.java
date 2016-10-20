@@ -1,4 +1,4 @@
-package it.ilpixelmatto.Pixelyzer;
+package it.ilpixelmatto.pixelyzer;
 
 /**
  * Created by Riccardo Russo on 27/08/2016.

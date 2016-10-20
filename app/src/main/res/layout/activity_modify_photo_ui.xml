@@ -7,10 +7,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="it.ilpixelmatto.Pixelyzer.ModifyPhotoUI">
+    tools:context="it.ilpixelmatto.pixelyzer.ModifyPhotoUI">
 
 
-    <!--<it.ilpixelmatto.Pixelyzer.PaintView-->
+    <!--<it.ilpixelmatto.pixelyzer.PaintView-->
     <!--android:layout_width="wrap_content"-->
     <!--android:layout_height="wrap_content" />-->
     <android.opengl.GLSurfaceView

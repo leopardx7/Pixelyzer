@@ -1,7 +1,7 @@
 //CLIENT SECRET 774a3b21-89ef-4fec-97c5-fdf71b15e53d
 //CLIENT ID (DEVELOPMENT MODE)* 06eede89c2474cfb96f7bdc72bcfe058
 
-package it.ilpixelmatto.Pixelyzer;
+package it.ilpixelmatto.pixelyzer;
 
 
 import android.app.Activity;
@@ -43,6 +43,7 @@ import xyz.hanks.library.SmallBang;
 public class SingleImageActivity extends Activity implements View.OnClickListener/*OverMenuView.OnSelectionChangeListener*/ {
     private static final String IMAGE_FILE_LOCATION = "image_file_location";
     // private ImageView imageView;
+
 
     ArrayList<Integer> pc = new ArrayList<Integer>(20);
 
@@ -111,26 +112,6 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         //  Uri uri = Uri.parse(getIntent().getExtras().getString("MyPhoto"));
         bMap = BitmapFactory.decodeFile(new File(getIntent().getData().getPath()).getAbsolutePath());
 
-        //  bMap = bMapUtils.loadBitmapFromFile(new File(getIntent().getData().getPath()).getAbsolutePath());
-        // bMap = bMapUtils.loadBitmapFromFile(new File(getIntent().getData().getPath()).getAbsolutePath());
-
-
-        //undoRedo = new UndoRedo(bMap.copy(bMap.getConfig(), true));
-
-
-//        float widthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM,
-//                pxToMm(bMap.getWidth(), context),
-//                getResources().getDisplayMetrics());
-//
-//        float heightPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_MM,
-//                pxToMm(bMap.getHeight(), context),
-//                getResources().getDisplayMetrics());
-//
-//        ViewGroup.LayoutParams layoutParams= mGPUImageView.getLayoutParams();
-//        layoutParams.width= (int) widthPx;
-//        layoutParams.height= (int) heightPx;
-//
-//        mGPUImageView.setLayoutParams(layoutParams);
 
         setContentView(R.layout.activity_single_image);
         Fade fade = new Fade();

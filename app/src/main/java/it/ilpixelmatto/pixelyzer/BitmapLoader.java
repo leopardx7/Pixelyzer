@@ -1,4 +1,4 @@
-package it.ilpixelmatto.Pixelyzer;
+package it.ilpixelmatto.pixelyzer;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

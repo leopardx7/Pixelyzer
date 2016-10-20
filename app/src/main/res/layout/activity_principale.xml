@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayoutPrincipale"
     android:layout_height="match_parent"
     android:background="@drawable/sfondo"
-    tools:context="it.ilpixelmatto.Pixelyzer.Principale">
+    tools:context="it.ilpixelmatto.pixelyzer.Principale">
 
     <ImageView
         android:layout_width="wrap_content"
