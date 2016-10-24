@@ -2,7 +2,20 @@ package it.ilpixelmatto.pixelyzer;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.util.LruCache;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import jp.co.cyberagent.android.gpuimage.GPUImageColorBalanceFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageContrastFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageEmbossFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageExposureFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageFilterGroup;
+import jp.co.cyberagent.android.gpuimage.GPUImageSaturationFilter;
 
 /**
  * Created by Riccardo Russo on 05/10/2016.
@@ -10,6 +23,7 @@ import android.util.LruCache;
 public class BitmapLoader {
 
     private LruCache<Integer, Bitmap> mMemoryCache;
+    private static GPUImageFilterGroup mGPUImageFilterGroup;
 
     // il valore della massima memoria disponibile, in kilobytes
     private final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
@@ -21,6 +35,7 @@ public class BitmapLoader {
     public BitmapLoader() {
 
 
+        mGPUImageFilterGroup = new GPUImageFilterGroup();
         mMemoryCache = new LruCache<Integer, Bitmap>(cacheSize) {
             @Override
             protected int sizeOf(Integer key, Bitmap bitmap) {
@@ -116,5 +131,62 @@ public class BitmapLoader {
         return mMemoryCache.snapshot().size();
     }
 
+
+    public GPUImageFilterGroup lala () {
+        mGPUImageFilterGroup.getFilters().set(0, new GPUImageExposureFilter(1));
+        mGPUImageFilterGroup.getFilters().set(1, new GPUImageSaturationFilter(1));
+        mGPUImageFilterGroup.getFilters().set(2, new GPUImageEmbossFilter(2));
+        mGPUImageFilterGroup.updateMergedFilters();
+
+        return mGPUImageFilterGroup;
+    }
+
+    public Class<? extends GPUImageFilter> findInstanceof(GPUImageFilter myFilter) {
+//        Log.wtf("CACCAAAAAAA", "FILTRI " + myFilter.getClass());
+
+        return myFilter.getClass();
+
+    }
+
+    public GPUImageFilterGroup addFilter(GPUImageFilter myFilter) {
+
+
+
+        if(mGPUImageFilterGroup.getFilters().size()==0)
+            mGPUImageFilterGroup.addFilter(myFilter);
+
+        boolean presente=false;
+
+        for(int i=0; i<mGPUImageFilterGroup.getFilters().size(); i++) {
+
+            if((mGPUImageFilterGroup.getFilters().get(i).getClass()) == myFilter.getClass()) {
+                mGPUImageFilterGroup.getFilters().set(i, myFilter);
+                presente=true;
+            }
+
+
+
+//            if(mGPUImageFilterGroup.getFilters().get(i) instanceof GPUImageExposureFilter)
+//            {
+//                mGPUImageFilterGroup.getFilters().set(i, myFilter);
+//            } else
+//            if(mGPUImageFilterGroup.getFilters().get(i) instanceof GPUImageContrastFilter)
+//            {
+//                mGPUImageFilterGroup.getFilters().set(i, myFilter);
+//            } else
+//            if(mGPUImageFilterGroup.getFilters().get(i) instanceof GPUImageSaturationFilter)
+//            {
+//                mGPUImageFilterGroup.getFilters().set(i, myFilter);
+//            } else mGPUImageFilterGroup.addFilter(myFilter);
+        }
+
+        if(!presente)
+            mGPUImageFilterGroup.addFilter(myFilter);
+
+
+      //  Log.wtf("MERDA", "FILTRI " + mGPUImageFilterGroup.getFilters().size());
+        mGPUImageFilterGroup.updateMergedFilters();
+        return mGPUImageFilterGroup;
+    }
 
 }

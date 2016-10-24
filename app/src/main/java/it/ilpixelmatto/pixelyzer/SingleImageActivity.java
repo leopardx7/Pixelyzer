@@ -202,6 +202,7 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         setupListener();
 
 
+
         mSmallBang = SmallBang.attach2Window(this); // animazione bottoni
 
     }
@@ -295,7 +296,7 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
             case R.id.luminosita:
                 mSmallBang.bang(v);
 
-                rotella.setRadiansAngle(radiantLuminosità);
+            //    rotella.setRadiansAngle(radiantLuminosità);
 
 //                Toast.makeText(getApplicationContext(), "luminosità", Toast.LENGTH_SHORT).show();
                 if (rotella.getVisibility() == View.INVISIBLE) {
@@ -316,7 +317,7 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                 break;
 
             case R.id.contrasto:
-                rotellaContrasto.setRadiansAngle(radiantContrasto);
+               // rotellaContrasto.setRadiansAngle(radiantContrasto);
                 mSmallBang.bang(v);
                 if (rotellaContrasto.getVisibility() == View.INVISIBLE) {
                     applicaContrasto = true;
@@ -411,6 +412,8 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                 break;
             case R.id.resetRotella:
                 mSmallBang.bang(v);
+               // mGPUImage.setFilter(bMapUtils.lala());
+
                 rotella.setRadiansAngle(0);
                 break;
             /*case R.id.ruotaDestra: {
@@ -785,6 +788,7 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
 //    }
 
 
+
     private void setupListener() {
 
 
@@ -796,7 +800,10 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                 rotellaTextView.setText(String.valueOf(radians));
 
                 if (applicaLuminosita) {
-                    mGPUImage.setFilter(new GPUImageExposureFilter((float) radians));
+                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter((float) radians)));
+
+//                    mGPUImage.requestRender();
+//                    mGPUImage.setFilter(new GPUImageExposureFilter((float) radians));
                     radiantLuminosità = radians;
                 }
 
@@ -819,7 +826,9 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                 rotellaTextView.setText(String.valueOf(radians));
 
                 if (applicaContrasto) {
-                    mGPUImage.setFilter(new GPUImageContrastFilter((float) radians + 1));
+                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter((float) radians+1)));
+
+//                    mGPUImage.setFilter(new GPUImageContrastFilter((float) radians + 1));
                     radiantContrasto = radians;
                 }
 
@@ -840,7 +849,8 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                 rotellaTextView.setText(String.valueOf(radians));
 
                 if (applicaSaturazione) {
-                    mGPUImage.setFilter(new GPUImageSaturationFilter((float) radians));
+                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter((float) radians)));
+                    //mGPUImage.setFilter(new GPUImageSaturationFilter((float) radians));
                     radiantSaturazione = radians;
                 }
 
@@ -859,13 +869,6 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
 
     }
 
-    public void setFilter(int id) {
 
-        switch (id) {
-            case 1:
-
-
-        }
-    }
 
 }
