@@ -8,6 +8,7 @@ import android.util.LruCache;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 
 import jp.co.cyberagent.android.gpuimage.GPUImageColorBalanceFilter;
 import jp.co.cyberagent.android.gpuimage.GPUImageContrastFilter;
@@ -142,13 +143,16 @@ public class BitmapLoader {
     }
 
     public Class<? extends GPUImageFilter> findInstanceof(GPUImageFilter myFilter) {
-//        Log.wtf("CACCAAAAAAA", "FILTRI " + myFilter.getClass());
+        Log.wtf("CACCAAAAAAA", "FILTRI " + myFilter.getClass());
 
         return myFilter.getClass();
 
     }
 
     public GPUImageFilterGroup addFilter(GPUImageFilter myFilter) {
+
+
+
 
 
 
@@ -159,10 +163,20 @@ public class BitmapLoader {
 
         for(int i=0; i<mGPUImageFilterGroup.getFilters().size(); i++) {
 
+            if((mGPUImageFilterGroup.getFilters().get(i) instanceof  IFImageFilter) && (myFilter instanceof IFImageFilter)) {
+                presente = true;
+                mGPUImageFilterGroup.getFilters().set(i, myFilter);
+                break;
+            }
+
             if((mGPUImageFilterGroup.getFilters().get(i).getClass()) == myFilter.getClass()) {
+
+
+
                 mGPUImageFilterGroup.getFilters().set(i, myFilter);
                 presente=true;
             }
+
 
 
 
@@ -187,6 +201,22 @@ public class BitmapLoader {
       //  Log.wtf("MERDA", "FILTRI " + mGPUImageFilterGroup.getFilters().size());
         mGPUImageFilterGroup.updateMergedFilters();
         return mGPUImageFilterGroup;
+    }
+
+    public void removeInstaFilter() {
+        for (int i = 0; i < mGPUImageFilterGroup.getFilters().size(); i++) {
+
+            if ((mGPUImageFilterGroup.getFilters().get(i) instanceof IFImageFilter)) {
+
+                mGPUImageFilterGroup.getFilters().remove(i);
+                break;
+            }
+        }
+        mGPUImageFilterGroup.updateMergedFilters();
+
+    }
+    public int getLenghFilterGroup() {
+        return mGPUImageFilterGroup.getFilters().size();
     }
 
 }

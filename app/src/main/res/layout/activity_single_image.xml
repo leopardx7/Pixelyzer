@@ -203,6 +203,7 @@
             android:layout_height="64dp">
 
 
+
             <com.github.shchurov.horizontalwheelview.HorizontalWheelView
                 android:id="@+id/rotella"
                 android:visibility="invisible"

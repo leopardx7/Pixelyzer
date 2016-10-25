@@ -53,7 +53,7 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
     //    private SeekBar barraLuminosita;
 //    private SeekBar barraContrasto, barraRosso, barraBlu, barraVerde;
     private Bitmap bMap, bMap2;
-    private int luminosita = 0, contrasto = 10, rosso = 1, verde = 1, blu = 1;
+    private float luminosita = 0, prevRadians, prevRadiansContrasto, prevRadiansSaturazione, contrasto = 0, saturazione=0, rosso = 1, verde = 1, blu = 1;
     //    private HorizontalScrollView horizontalScrollView;
     private TextView rotellaTextView;
     private HorizontalScrollView filtriScrollView;
@@ -79,6 +79,8 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
     private Button resetRotella, resetRotellaContrasto, resetRotellaSaturazione;
     private boolean applicaLuminosita = false, applicaContrasto = false, applicaSaturazione = false;
     private double radiantLuminosità = 0, radiantContrasto = 0, radiantSaturazione = 0;
+
+
 
     GPUImageFilterGroup group = new GPUImageFilterGroup();
 
@@ -199,6 +201,8 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         resetRotellaContrasto.setOnClickListener(this);
         resetRotellaSaturazione = (Button) findViewById(R.id.resetRotellaSaturazione);
         resetRotellaSaturazione.setOnClickListener(this);
+
+
         setupListener();
 
 
@@ -208,11 +212,12 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
     }
 
     private void switchFilterTo(final GPUImageFilter filter) {
-        if (mFilter == null
-                || (filter != null && !mFilter.getClass().equals(filter.getClass()))) {
+        if (mFilter == null || (filter != null && !mFilter.getClass().equals(filter.getClass()))) {
             mFilter = filter;
-            mGPUImage.setFilter(mFilter);
+
+
             mFilterAdjuster = new GPUImageFilterTools.FilterAdjuster(mFilter);
+            mGPUImage.setFilter(bMapUtils.addFilter(mFilter));
         }
     }
 
@@ -245,7 +250,10 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
             case R.id.original:
 //                switchFilterTo(new IFAmaroFilter(context));
                 // togli filtro, si ma come?
-                mGPUImage.setFilter(new GPUImageFilter());
+                bMapUtils.removeInstaFilter();
+                if (bMapUtils.getLenghFilterGroup()==0)
+                    mGPUImage.setFilter(new GPUImageFilter());
+
                 mGPUImage.requestRender();
 
                 break;
@@ -415,381 +423,42 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
                // mGPUImage.setFilter(bMapUtils.lala());
 
                 rotella.setRadiansAngle(0);
-                break;
-            /*case R.id.ruotaDestra: {
-                //mGPUImage.setRotation(Rotation.ROTATION_90);
-                bMap = rotate(bMap, 90);
-
-                mGPUImage.setImage(bMap);
-                mGPUImage.requestRender();
-
-                //imageView.setImageBitmap(bMap);
-                break;
-            }
-            case R.id.ruotaSinistra: {
-                // mGPUImage.setRotation(Rotation.ROTATION_90);
-                bMap = rotate(bMap, -90);
-               // mGPUImage.deleteImage();
-                mGPUImage.setImage(bMap);
-                mGPUImage.requestRender();
-
-                // imageView.setImageBitmap(rotate(bMap, -90));
-                break;
-            }
-            case R.id.ruota: {
-                break;
-            }
-            case R.id.tagliaLibero: {
-                break;
-            }
-            case R.id.tagliaQuadrato: {
-                break;
-            }
-            case R.id.purple2: {
-
-                //imageView.setColorFilter(Color.MAGENTA, PorterDuff.Mode.LIGHTEN);
+                luminosita=0;
+                prevRadians=0;
+                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(0)));
 
                 break;
-            }
-            case R.id.purple3: {
+            case R.id.resetRotellaContrasto:
+                mSmallBang.bang(v);
+                // mGPUImage.setFilter(bMapUtils.lala());
+
+                rotellaContrasto.setRadiansAngle(0);
+                contrasto=0;
+                prevRadiansContrasto=0;
+                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter(1)));
 
                 break;
-            }
-            case R.id.purple4: {
+            case R.id.resetRotellaSaturazione:
+                mSmallBang.bang(v);
+                // mGPUImage.setFilter(bMapUtils.lala());
+
+                rotellaSaturazione.setRadiansAngle(0);
+                saturazione=0;
+                prevRadiansSaturazione=0;
+                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter(1)));
 
                 break;
-            }
-            case R.id.blu2: {
 
-                break;
-            }
-            case R.id.blu3: {
 
-                break;
-            }
-            case R.id.blu4: {
-
-                break;
-            }*/
 
         }
     }
 
 
-//    public Bitmap rotate(Bitmap src, float degree) {
-//        // create new matrix
-//        Matrix matrix = new Matrix();
-//        // setup rotation degree
-//        matrix.postRotate(degree);
-//
-//        //mGPUImage.setRotation(Rotation.ROTATION_90);
-//        // return new bitmap rotated using matrix
-//        return Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, false);
-//    }
-
-
-//    /**
-//     * @param value      -10..10 0 is default per esposizione, 0..4 1 is default per contrasto
-//     * @param operazione true esposizione, false contrasto
-//     * @return new bitmap
-//     */
-//    public void cambiaLuminositaContrasto(float value, Boolean operazione) {
-//        if (operazione)
-//            //imageProcessor.doBrightness(bMap, (int)value);
-//            mGPUImage.setFilter(new GPUImageExposureFilter(value));
-//
-//        else
-//            mGPUImage.setFilter(new GPUImageContrastFilter(value));
-//
-////            imageProcessor.applyHueFilter(bMap, (int)value);
-//
-//        // mGPUImage.setImage(bMap);
-//        mGPUImage.requestRender();
-
-        /*
-        ColorMatrix cm = new ColorMatrix(new float[]
-                {
-                        contrast, 0, 0, 0, brightness,
-                        0, contrast, 0, 0, brightness,
-                        0, 0, contrast, 0, brightness,
-                        0, 0, 0, 1, 0
-                });
-
-        Bitmap ret = Bitmap.createBitmap(bmp.getWidth(), bmp.getHeight(), bmp.getConfig());
-
-        Canvas canvas = new Canvas(ret);
-
-        Paint paint = new Paint();
-        paint.setColorFilter(new ColorMatrixColorFilter(cm));
-        canvas.drawBitmap(bmp, 0, 0, paint);
-        */
-    // return mGPUImage.getBitmapWithFilterApplied();
-//    }
-
-//    public static Bitmap cambioColori(Bitmap src, int type, float percent) {
-//        int width = src.getWidth();
-//        int height = src.getHeight();
-//        Bitmap bmOut = Bitmap.createBitmap(width, height, src.getConfig());
-//
-//        int A, R, G, B;
-//        int pixel;
-//
-//        for (int x = 0; x < width; ++x) {
-//            for (int y = 0; y < height; ++y) {
-//                pixel = src.getPixel(x, y);
-//                A = Color.alpha(pixel);
-//                R = Color.red(pixel);
-//                G = Color.green(pixel);
-//                B = Color.blue(pixel);
-//                if (type == 1) {
-//                    R = (int) (R * (1 + percent));
-//                    if (R > 255) R = 255;
-//                } else if (type == 2) {
-//                    G = (int) (G * (1 + percent));
-//                    if (G > 255) G = 255;
-//                } else if (type == 3) {
-//                    B = (int) (B * (1 + percent));
-//                    if (B > 255) B = 255;
-//                }
-//                bmOut.setPixel(x, y, Color.argb(A, R, G, B));
-//            }
-//        }
-//        return bmOut;
-//    }
-
-
-//    public void creaCanvas() {
-//        //mGPUImage.setFilter(new GPUImageGrayscaleFilter(bMap));
-//
-//        /*Bitmap mutableBitmap = bMap.copy(Bitmap.Config.ARGB_8888, true); // 8888 ogni pixel è in 4 byte
-//        //mPaintView = new PaintView(this, 150, 200);
-//        Canvas canvas = new Canvas(mutableBitmap);
-//        canvas.drawARGB(0x00, 255, 0, 0);
-//       // canvas.drawColor(Color.RED);
-//        canvas.drawBitmap(mutableBitmap, 0, 0, null);
-//       // canvas.drawBitmap(bitmapStar, 0, 0, null);
-//
-//        BitmapDrawable dr = new BitmapDrawable(bMap);
-//        dr.setBounds(0, 0, dr.getIntrinsicWidth(), dr.getIntrinsicHeight());
-//        imageView.setImageDrawable(dr);*/
-//
-//        // mPaintView.changeColor(Color.RED);
-//
-//
-//        // mPaintView.fillLayer(40, 40, 40);
-//        // Canvas effetti = new Canvas(mutableBitmap);
-//        // effetti.drawColor(Color.CYAN);
-//
-//
-//    }
-
-//    /**
-//     * Called when a touch screen event was not handled by any of the views
-//     * under it.  This is most useful to process touch events that happen
-//     * outside of your window bounds, where there is no view to receive it.
-//     *
-//     * @param event The touch screen event being processed.
-//     * @return Return true if you have consumed the event, false if you haven't.
-//     * The default implementation always returns false.
-//     */
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//
-//
-//        DisplayMetrics coordinate = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(coordinate);
-//
-//        // ora bisogna far si che le coordinate si spostino a destra o sinistra entro un limite prestabilito.. sarà impossibile xD
-//
-//
-//       // Toast.makeText(getApplicationContext(), (String.valueOf(coordinate.widthPixels)),Toast.LENGTH_SHORT).show();
-//        float downXValue = 0;
-//        float downYValue = 0;
-//        String direction="";
-//        switch (event.getAction()) {
-//
-//            case MotionEvent.ACTION_DOWN:
-//
-//                valoreLumCont.setVisibility(View.VISIBLE);
-//            {
-//                // store the X value when the user's finger was pressed down
-//                downXValue = event.getX();
-//                downYValue = event.getY();
-//                Log.v("", "= " + downYValue);
-//                break;
-//            }
-//
-//            case MotionEvent.ACTION_MOVE: {
-//
-//
-//                // Get the X value when the user released his/her finger
-//                float currentX = event.getX();
-//                float currentY = event.getY();
-//                // check if horizontal or vertical movement was bigger
-//
-//
-//                valoreLumCont.setText(String.valueOf(currentX-downXValue));
-//                if (Math.abs(downXValue - currentX) > Math.abs(downYValue
-//                        - currentY)) {
-//                    Log.v("", "x");
-//                    // going backwards: pushing stuff to the right
-//                    if (downXValue < currentX) {
-//
-//
-//                        direction="right";
-//
-//                    }
-//
-//                    // going forwards: pushing stuff to the left
-//                    if (downXValue > currentX) {
-//                        direction="left";
-//                    }
-//
-//                } else {
-//                    Log.v("", "y ");
-//
-//                    if (downYValue < currentY) {
-//                        direction="down";
-//                    }
-//                    if (downYValue > currentY) {
-//                        direction="up";
-//                    }
-//                }
-//                break;
-//            }
-//            case MotionEvent.ACTION_UP:
-//            {
-//               // Toast.makeText(getApplicationContext(), direction,Toast.LENGTH_SHORT).show();
-//                valoreLumCont.setVisibility(View.INVISIBLE);
-//
-//                break;
-//            }
-//
-//        }
-//
-//        return super.onTouchEvent(event);
-//    }
-
-//    @Override
-//    public void onPictureSaved(Uri uri) {
-//        Toast.makeText(getApplicationContext(), "Saved: " + uri.toString(), Toast.LENGTH_SHORT).show();
-//        // Uri temp = Uri.parse("content://media/external/images/media/temp.jpg");
-//
-//
-//        String filePath = Environment.getExternalStorageDirectory() + "/Pictures/GalleryApp/temp.jpg";
-//
-//        File file = new File(filePath);
-//
-//
-//        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-////        mGPUImage.getGPUImage().deleteImage();
-////        mGPUImage.setImage(bitmap);
-//        rotella.setRadiansAngle(0);
-//
-//        mGPUImage.requestRender();
-//
-//    }
-
-
-//    @Override
-//    public void onSelectionChanged(int i) {
-//        // Log.d(TAG, "onSelectionChanged: " + position);
-//
-//    }
-//
-//    @Override
-//    public void onVisibilityChanged(View view, boolean b) {
-//        //Log.d(TAG, "onVisibilityChanged: " + view + ", " + visible);
-//
-//    }
-
-
-//    private class ApplicaEffettiTask extends AsyncTask<Float, Float, Float> {
-//
-//        /**
-//         * Override this method to perform a computation on a background thread. The
-//         * specified parameters are the parameters passed to {@link #execute}
-//         * by the caller of this task.
-//         * <p/>
-//         * This method can call {@link #publishProgress} to publish updates
-//         * on the UI thread.
-//         *
-//         * @param params The parameters of the task.
-//         * @return A result, defined by the subclass of this task.
-//         * @see #onPreExecute()
-//         * @see #onPostExecute
-//         * @see #publishProgress
-//         */
-//        @SuppressWarnings("WrongThread")
-//        @Override
-//        protected Float doInBackground(Float... params) {
-//
-//            int value = params[0].intValue();
-//
-//
-//            // 0 luminosità
-//            // 1 contrasto
-//            // 2 cambia il blu
-//            // 3 cambia il verde
-//            // 4 cambia il rosso
-//            switch (value) {
-//                case 0:
-//                    cambiaLuminositaContrasto(params[1], true);
-//                    //bMap = mGPUImage.getBitmapWithFilterApplied();
-//                    break;
-//                case 1:
-//                    cambiaLuminositaContrasto(params[1], false);
-//                    // bMap = mGPUImage.getBitmapWithFilterApplied();
-//                    break;
-//                case 2:
-//                    mGPUImage.setFilter(new GPUImageRGBFilter(rosso, verde, params[1]));
-//                    //.setFilter(new GPUImageRGBFilter(rosso, verde, params[1]));
-//                    // GPUImageRGBFilter(params[1]));
-//                    // bMap = mGPUImage.getBitmapWithFilterApplied();
-//                    break;
-//                case 3:
-//                    mGPUImage.setFilter(new GPUImageRGBFilter(rosso, params[1], blu));
-//
-//                    //  bMap = mGPUImage.getBitmapWithFilterApplied();
-//                    break;
-//                case 4:
-//                    mGPUImage.setFilter(new GPUImageRGBFilter(params[1], verde, blu));
-//
-//                    // bMap = mGPUImage.getBitmapWithFilterApplied();
-//                    break;
-//
-//
-//            }
-//
-//
-//            return null;
-//        }
-//
-//        /**
-//         * <p>Runs on the UI thread after {@link #doInBackground}. The
-//         * specified result is the value returned by {@link #doInBackground}.</p>
-//         * <p/>
-//         * <p>This method won't be invoked if the task was cancelled.</p>
-//         *
-//         * @param _float The result of the operation computed by {@link #doInBackground}.
-//         * @see #onPreExecute
-//         * @see #doInBackground
-//         * @see #onCancelled(Object)
-//         */
-//        @Override
-//        protected void onPostExecute(Float _float) {
-//            super.onPostExecute(_float);
-//            mGPUImage.requestRender();
-//
-//
-//            //imageView.setImageBitmap(bMap);
-//
-//        }
-//    }
-
 
 
     private void setupListener() {
+
 
 
         rotella.setEndLock(true);
@@ -797,15 +466,57 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         rotella.setListener(new HorizontalWheelView.Listener() {
             @Override
             public void onRotationChanged(double radians) {
-                rotellaTextView.setText(String.valueOf(radians));
+                String temp="0";
+                if(radians!=0)
+                    temp = String.valueOf(radians).substring(0, 4);
+                else
+                    temp ="0";
 
-                if (applicaLuminosita) {
-                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter((float) radians)));
+                rotellaTextView.setText(temp);
 
-//                    mGPUImage.requestRender();
-//                    mGPUImage.setFilter(new GPUImageExposureFilter((float) radians));
-                    radiantLuminosità = radians;
+                if((Math.abs(radians)-Math.abs(prevRadians)>0.5) || (Math.abs(radians)-Math.abs(prevRadians)<-0.5))
+                {
+                    if(radians>0) {
+                        if (Math.abs(radians) - Math.abs(prevRadians) > 0.5) {
+                            luminosita += 0.1;
+                            if (applicaLuminosita) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(luminosita)));
+                            }
+                        } else {
+                            luminosita -= 0.1;
+                            if (applicaLuminosita) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(luminosita)));
+                            }
+                        }
+                    }
+                    else {
+                        if(Math.abs(radians)-Math.abs(prevRadians)>0.2) {
+                            luminosita -= 0.1;
+                            if (applicaLuminosita) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(luminosita)));
+                            }
+                        }
+                        else {
+                            luminosita += 0.1;
+                            if (applicaLuminosita) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(luminosita)));
+                            }
+                        }
+                    }
+                    prevRadians=(float)radians;
+
                 }
+
+
+//                if (applicaLuminosita) {
+//
+//
+//                        mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageExposureFilter(luminosita)));
+//
+////                    mGPUImage.requestRender();
+////                    mGPUImage.setFilter(new GPUImageExposureFilter((float) radians));
+//                    radiantLuminosità = radians;
+//                }
 
             }
 
@@ -823,15 +534,43 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         rotellaContrasto.setListener(new HorizontalWheelView.Listener() {
             @Override
             public void onRotationChanged(double radians) {
-                rotellaTextView.setText(String.valueOf(radians));
+                String temp = "0";
+                if (radians != 0)
+                    temp = String.valueOf(radians).substring(0, 4);
+                else
+                    temp = "0";
 
-                if (applicaContrasto) {
-                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter((float) radians+1)));
+                rotellaTextView.setText(temp);
 
-//                    mGPUImage.setFilter(new GPUImageContrastFilter((float) radians + 1));
-                    radiantContrasto = radians;
+                if ((Math.abs(radians) - Math.abs(prevRadiansContrasto) > 0.5) || (Math.abs(radians) - Math.abs(prevRadiansContrasto) < -0.5)) {
+                    if (radians > 0) {
+                        if (Math.abs(radians) - Math.abs(prevRadiansContrasto) > 0.5) {
+                            contrasto += 0.1;
+                            if (applicaContrasto) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter(contrasto + 1)));
+                            }
+                        } else {
+                            contrasto -= 0.1;
+                            if (applicaContrasto) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter(contrasto + 1)));
+                            }
+                        }
+                    } else {
+                        if (Math.abs(radians) - Math.abs(prevRadiansContrasto) > 0.2) {
+                            contrasto -= 0.1;
+                            if (applicaContrasto) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter(contrasto + 1)));
+                            }
+                        } else {
+                            contrasto += 0.1;
+                            if (applicaContrasto) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageContrastFilter(contrasto + 1)));
+                            }
+                        }
+                    }
+                    prevRadiansContrasto = (float) radians;
+
                 }
-
             }
 
             @Override
@@ -846,12 +585,43 @@ public class SingleImageActivity extends Activity implements View.OnClickListene
         rotellaSaturazione.setListener(new HorizontalWheelView.Listener() {
             @Override
             public void onRotationChanged(double radians) {
-                rotellaTextView.setText(String.valueOf(radians));
+                String temp = "0";
+                if (radians != 0)
+                    temp = String.valueOf(radians).substring(0, 4);
+                else
+                    temp = "0";
 
-                if (applicaSaturazione) {
-                    mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter((float) radians)));
-                    //mGPUImage.setFilter(new GPUImageSaturationFilter((float) radians));
-                    radiantSaturazione = radians;
+                rotellaTextView.setText(temp);
+
+                if ((Math.abs(radians) - Math.abs(prevRadiansSaturazione) > 0.5) || (Math.abs(radians) - Math.abs(prevRadiansSaturazione) < -0.5)) {
+                    if (radians > 0) {
+                        if (Math.abs(radians) - Math.abs(prevRadiansSaturazione) > 0.5) {
+                            saturazione += 0.1;
+                            if (applicaSaturazione) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter(saturazione+1)));
+                            }
+                        } else {
+                            saturazione -= 0.1;
+                            if (applicaSaturazione) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter(saturazione+1)));
+                            }
+                        }
+                    } else {
+                        if (Math.abs(radians) - Math.abs(prevRadiansSaturazione) > 0.2) {
+                            saturazione -= 0.1;
+                            if (applicaSaturazione) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter(saturazione+1)));
+                            }
+                        } else {
+                            saturazione += 0.1;
+                            if (applicaSaturazione) {
+                                mGPUImage.setFilter(bMapUtils.addFilter(new GPUImageSaturationFilter(saturazione+1)));
+                            }
+                        }
+                    }
+                    Log.wtf("MERDA", ("saturazione: " + String.valueOf(saturazione) + ", rad: " + prevRadiansSaturazione));
+                    prevRadiansSaturazione = (float) radians;
+
                 }
 
             }
