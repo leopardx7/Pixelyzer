@@ -3,9 +3,23 @@
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
-    <dimen name="GPUImageSize">550dp</dimen>
-    <dimen name="larghezzaBottoni">100dp</dimen>
-    <dimen name="altezzaGPU">150dp</dimen>
+    <dimen name="GPUImageSize">600dp</dimen>
+    <dimen name="larghezzaBottoni">50dp</dimen>
+    <dimen name="altezzaGPU">75dp</dimen>
+    <dimen name="bottonedonemargin">540dp</dimen>
+    <dimen name="bottonedonemargiTop">0dp</dimen>
+    <dimen name="marginGPUTop">90dp</dimen>
+    <dimen name="spaziotrabottoni">52dp</dimen>
+    <dimen name="spaziotrafrecce">55dp</dimen>
+    <dimen name="spaziosoprabottoni">30dp</dimen>
+    <dimen name="spaziosinistrafrecce">18dp</dimen>
+
+    <dimen name="biancosotto">180dp</dimen>
+    <dimen name="testo">120sp</dimen>
+
+
+    <dimen name="textSize">40sp</dimen>
+
 
 
 </resources>

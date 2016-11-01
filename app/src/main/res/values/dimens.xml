@@ -5,7 +5,20 @@
     <dimen name="larghezzaBottoni">30dp</dimen>
     <dimen name="GPUImageSize">350dp</dimen>
     <dimen name="altezzaGPU">50dp</dimen>
-    <dimen name="spaziotrabottoni">62dp</dimen>
+    <dimen name="spaziotrabottoni">30dp</dimen>
+    <dimen name="spaziotrafrecce">12dp</dimen>
+    <dimen name="spaziosoprabottoni">10dp</dimen>
+<dimen name="spaziosinistrafrecce">4dp</dimen>
     <dimen name="filtri">90dp</dimen>
+    <dimen name="fabButton">5dp</dimen>
+    <dimen name="bottonedonemargin">320dp</dimen>
+    <dimen name="bottonedonemarginTop">10dp</dimen>
+    <dimen name="marginGPUTop">60dp</dimen>
+    <dimen name="biancosotto">150dp</dimen>
+    <dimen name="testo">70sp</dimen>
+
+    <dimen name="textSize">30sp</dimen>
+
+
 
 </resources>

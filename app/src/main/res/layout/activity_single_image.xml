@@ -1,59 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:htext="http://schemas.android.com/tools"
 
     android:background="@color/nero">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/altezzaGPU"
         android:background="@color/ucrop_color_toolbar">
 
+        <com.hanks.htextview.HTextView
+            htext:animateType="line"
+            android:text=" "
+            android:id="@+id/textSelected"
+            android:background="@color/ucrop_color_toolbar"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/textSize"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp" />
 
-        <Button
-            android:id="@+id/undo"
-            android:layout_width="@dimen/larghezzaBottoni"
-            android:layout_height="@dimen/larghezzaBottoni"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_undo_black_48dp" />
 
         <Button
             android:id="@+id/done"
             android:layout_width="@dimen/larghezzaBottoni"
             android:layout_height="@dimen/larghezzaBottoni"
+            android:layout_marginStart="@dimen/bottonedonemargin"
 
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_done_black_48dp" />
+            android:layout_marginTop="@dimen/bottonedonemarginTop"
+            android:background="@drawable/ic_done_white_48dp" />
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <jp.co.cyberagent.android.gpuimage.GPUImageView
         android:id="@+id/visualizzaFotoView"
         android:layout_width="@dimen/GPUImageSize"
         android:layout_height="@dimen/GPUImageSize"
-
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+        android:layout_marginTop="@dimen/marginGPUTop" />
 
-    <jp.co.cyberagent.android.gpuimage.GPUImageView
-        android:id="@+id/visualizzaFotoConFiltri"
-        android:layout_width="@dimen/GPUImageSize"
-        android:layout_height="@dimen/GPUImageSize"
+    <!-- <jp.co.cyberagent.android.gpuimage.GPUImageView
+         android:id="@+id/visualizzaFotoConFiltri"
+         android:layout_width="@dimen/GPUImageSize"
+         android:layout_height="@dimen/GPUImageSize"
 
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp" />
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="@dimen/marginGPUTop" />-->
     <!--android:layout_marginBottom="@+id/filterCropView"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/biancosotto"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/visualizzaFotoView"
+        android:layout_alignParentStart="true"
         android:background="@android:color/white"
         android:gravity="bottom"
         android:orientation="vertical">
@@ -61,10 +64,10 @@
         <HorizontalScrollView
             android:id="@+id/FiltriScrollView"
             android:layout_width="wrap_content"
-            android:layout_marginBottom="50dp"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="50dp"
+            android:visibility="invisible">
 
             <LinearLayout
                 android:id="@+id/FiltriLinearScrollView"
@@ -170,46 +173,66 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="100dp"
             android:text="0"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/resetRotella"
             android:layout_width="30dp"
             android:layout_height="30dp"
-
             android:layout_marginStart="10dp"
-            android:background="@drawable/ic_highlight_off_black_48dp" />
+            android:background="@drawable/ic_highlight_off_black_48dp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/resetRotellaTemperatura"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_highlight_off_black_48dp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/resetRotellaContrasto"
             android:layout_width="30dp"
             android:layout_height="30dp"
-
             android:layout_marginStart="10dp"
-            android:background="@drawable/ic_highlight_off_black_48dp" />
+
+            android:background="@drawable/ic_highlight_off_black_48dp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/resetRotellaSaturazione"
             android:layout_width="30dp"
             android:layout_height="30dp"
-
             android:layout_marginStart="10dp"
-            android:background="@drawable/ic_highlight_off_black_48dp" />
+
+            android:background="@drawable/ic_highlight_off_black_48dp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/resetRotellaLuci"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+
+            android:background="@drawable/ic_highlight_off_black_48dp"
+            android:visibility="invisible" />
+
 
         <RelativeLayout
-            android:layout_width="match_parent"
             android:id="@+id/rotellaLayout"
-            android:layout_marginTop="40dp"
-            android:layout_height="64dp">
-
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="40dp">
 
 
             <com.github.shchurov.horizontalwheelview.HorizontalWheelView
                 android:id="@+id/rotella"
-                android:visibility="invisible"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
                 android:paddingBottom="32dp"
+                android:visibility="invisible"
                 app:activeColor="@color/red7"
                 app:normalColor="@color/nero" />
 
@@ -226,26 +249,105 @@
                 android:id="@+id/rotellaSaturazione"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:visibility="invisible"
                 android:paddingBottom="32dp"
+                android:visibility="invisible"
                 app:activeColor="@color/blueScuro"
+                app:normalColor="@color/nero" />
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/rotellaTemperatura"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingBottom="32dp"
+                android:visibility="invisible"
+                app:activeColor="@android:color/holo_purple"
+                app:normalColor="@color/nero" />
+
+            <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+                android:id="@+id/rotellaLuci"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:paddingBottom="32dp"
+                android:visibility="invisible"
+                app:activeColor="@android:color/holo_green_dark"
                 app:normalColor="@color/nero" />
 
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+android:layout_marginBottom="@dimen/spaziosoprabottoni"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/selectLuminosita"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/spaziotrafrecce"
 
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spaziosinistrafrecce"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+            <ImageView
+                android:id="@+id/selectContrasto"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/spaziotrafrecce"
+                android:visibility="invisible"
+
+                android:layout_height="wrap_content"
+
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+            <ImageView
+                android:id="@+id/selectSaturazione"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spaziotrafrecce"
+                android:visibility="invisible"
+
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+            <ImageView
+                android:id="@+id/selectTemperatura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spaziotrafrecce"
+
+                android:visibility="invisible"
+
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+            <ImageView
+                android:id="@+id/selectLuci"
+                android:layout_width="wrap_content"
+                android:visibility="invisible"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spaziotrafrecce"
+
+
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+
+            <ImageView
+                android:id="@+id/selectFiltri"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_48dp" />
+
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/linerHorizScrolView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
 
-            android:layout_marginTop="100dp"
             android:orientation="horizontal"
             android:weightSum="1">
-
 
             <Button
                 android:id="@+id/luminosita"
@@ -282,6 +384,29 @@
                 />
 
             <Button
+                android:id="@+id/temperatura"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:layout_marginRight="@dimen/spaziotrabottoni"
+                android:background="@drawable/ic_wb_incandescent_black_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+            <Button
+                android:id="@+id/luci"
+                android:layout_width="@dimen/larghezzaBottoni"
+                android:layout_height="@dimen/larghezzaBottoni"
+                android:layout_marginRight="@dimen/spaziotrabottoni"
+                android:background="@drawable/ic_highlight_black_48dp"
+                android:clickable="true"
+                android:gravity="bottom|center_horizontal"
+
+                />
+
+
+            <Button
                 android:id="@+id/filtri"
                 android:layout_width="@dimen/larghezzaBottoni"
                 android:layout_height="@dimen/larghezzaBottoni"
@@ -291,8 +416,6 @@
                 android:gravity="bottom|center_horizontal"
 
                 />
-
-
         </LinearLayout>
 
 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="it.ilpixelmatto.pixelyzer.FinalActivity">
+
+
+    <ImageView
+
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+
+        android:id="@+id/imageViewFinal"
+        />
+
+    <in.championswimmer.libsocialbuttons.fabs.FABFacebook
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/facebook"
+        android:layout_marginTop="@dimen/fabButton"
+        android:layout_marginStart="@dimen/fabButton"
+        android:layout_alignTop="@+id/imageViewFinal"
+        android:layout_toEndOf="@+id/imageViewFinal" />
+    <in.championswimmer.libsocialbuttons.fabs.FABTwitter
+        android:text="Follow on Twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/fabButton"
+        android:id="@+id/twitter"
+        android:layout_alignTop="@+id/instagram"
+        android:layout_toEndOf="@+id/instagram" />
+    <in.championswimmer.libsocialbuttons.fabs.FABInstagram
+        android:text="Instagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/instagram"
+        android:layout_marginStart="@dimen/fabButton"
+        android:layout_alignTop="@+id/facebook"
+        android:layout_toEndOf="@+id/whatsapp" />
+    <in.championswimmer.libsocialbuttons.fabs.FABGoogleplus
+        android:text="Follow on Twitter"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="@dimen/fabButton"
+        android:layout_marginTop="@dimen/fabButton"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/twitter"
+        android:layout_toEndOf="@+id/whatsapp"
+        android:id="@+id/gplus" />
+    <in.championswimmer.libsocialbuttons.fabs.FABWhatsapp
+        android:text="Follow on Twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/fabButton"
+        android:id="@+id/whatsapp"
+        android:layout_below="@+id/facebook"
+        android:layout_alignStart="@+id/facebook" />
+    <in.championswimmer.libsocialbuttons.fabs.FABTumblr
+        android:text="Follow on Twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/fabButton"
+
+        android:layout_marginStart="@dimen/fabButton"
+        android:id="@+id/tumblr"
+        android:layout_below="@+id/twitter"
+        android:layout_toEndOf="@+id/gplus" />
+
+
+    <ImageButton
+        android:id="@+id/share"
+        android:layout_below="@+id/gplus"
+        android:layout_toEndOf="@+id/whatsapp"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:layout_marginTop="@dimen/fabButton"
+
+        android:src="@drawable/ic_share_black_48dp"
+        android:layout_marginStart="@dimen/fabButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        />
+
+
+
+
+  <!--  <br.com.bloder.magic.view.MagicButton
+        android:id="@+id/magic_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:magic_button_size="50dp"
+        app:button_icon="@drawable/ic_share_black_48dp"
+        app:button_icon_width="25dp"
+        app:button_icon_height="25dp"
+        app:hide_text="Share on instagram"
+        app:hide_text_size="10dp"
+        app:hide_text_color="@android:color/black"
+        app:icon_button_color="@color/yellow"
+        app:expandable_area_color="@android:color/darker_gray"/>
+-->
+
+
+</RelativeLayout>

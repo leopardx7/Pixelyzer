@@ -4,21 +4,62 @@
     android:layout_width="match_parent"
     android:id="@+id/relativeLayoutPrincipale"
     android:layout_height="match_parent"
-    android:background="@drawable/sfondo"
+    android:background="@color/nero"
     tools:context="it.ilpixelmatto.pixelyzer.Principale">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/prova" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_alignParentBottom="true"
 
+    android:layout_height="400dp">
+
+    <com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/circle_loading_view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="175dp"
+        android:background="@color/nero"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        app:mainColor="@color/blueScuro"
+        app:secondaryColor="@color/blu4"
+        app:textColor="@android:color/white"
+        />
     <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/FotocameraButton"
+        android:background="@drawable/ic_camera_roll_white_48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Gallery"
-        android:id="@+id/FotocameraButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp" />
+        android:text="Seleziona Foto"
+        android:textColor="@color/white"
+        android:id="@+id/textView"
+        android:layout_below="@+id/FotocameraButton"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>
+
+
+
+<it.ilpixelmatto.pixelyzer.TitanicTextView
+    android:id="@+id/titanic_tv"
+    android:text="Pixelyzer"
+    android:layout_marginTop="100dp"
+    android:layout_centerHorizontal="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textColor="#212121"
+    android:textSize="@dimen/testo" />
+
+
 
 </RelativeLayout>

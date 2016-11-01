@@ -2,6 +2,7 @@ package it.ilpixelmatto.pixelyzer;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+
+import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -24,41 +27,49 @@ public class Principale extends AppCompatActivity {
     //private static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private static final int MY_PERMISSIONS_REQUEST_STORAGE = 2;
     private static final int RESULT_LOAD_IMG = 1, CROPIMAGE = 2;
-    private String imgDecodableString;
-    Uri imageUri; // imageUri contiene uri dell'immagine da croppare
-    Uri imageCropped;
-    private Activity act;
-    private static final int TIMER_LENGTH = 30;
-    private PaintView mPaintView;
+
     private Button fotocameraButton;
     private static final String SAMPLE_CROPPED_IMAGE_NAME = "SampleCropImage";
 
+
+    private TitanicTextView titanicTextView;
+    private Titanic titanic;
+    private AnimatedCircleLoadingView animatedCircleLoadingView;
     private String uri;
     private ImageView imageView;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        act = this;
 
 
-        imageView = (ImageView) findViewById(R.id.prova);
+
+
+
         setContentView(R.layout.activity_principale);
+    titanicTextView = (TitanicTextView) findViewById(R.id.titanic_tv);
 
+        titanic = new Titanic();
+        titanic.start(titanicTextView);
+
+        animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
+
+        animatedCircleLoadingView.startIndeterminate();
 
         Slide slide = new Slide();
         slide.setDuration(1000);
         getWindow().setExitTransition(slide);
 
         fotocameraButton = (Button) findViewById(R.id.FotocameraButton);
-        // mPaintView = (PaintView) findViewById(R.id.animazione);
-        //mPaintView.start(TIMER_LENGTH);
-        // int statoPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//        if (statoPermission!=0) {
-//            ActivityCompat.requestPermissions(this,
-//                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_STORAGE);
-//        }
+
 
 
         // controlliamo se la permission è concessa
@@ -75,88 +86,23 @@ public class Principale extends AppCompatActivity {
             }
         }
 
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            if (ContextCompat.checkSelfPermission(this,
-//                    Manifest.permission.CAMERA)
-//                    != PackageManager.PERMISSION_GRANTED) {
-//
-//                // Should we show an explanation?
-//                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//                        Manifest.permission.CAMERA)) {
-//
-//                    // Show an expanation to the user *asynchronously* -- don't block
-//                    // this thread waiting for the user's response! After the user
-//                    // sees the explanation, try again to request the permission.
-//
-//                } else {
-//
-//                    // No explanation needed, we can request the permission.
-//
-//                    ActivityCompat.requestPermissions(this,
-//                            new String[]{Manifest.permission.CAMERA},
-//                            MY_PERMISSIONS_REQUEST_CAMERA);
-//
-//                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-//                    // app-defined int constant. The callback method gets the
-//                    // result of the request.
-//                }
-//            }
-//           // return;
-//        }
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            // TODO: Consider calling
-//            //    ActivityCompat#requestPermissions
-//            // here to request the missing permissions, and then overriding
-//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//            //                                          int[] grantResults)
-//            // to handle the case where the user grants the permission. See the documentation
-//            // for ActivityCompat#requestPermissions for more details.
-//            if (ContextCompat.checkSelfPermission(this,
-//                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                    != PackageManager.PERMISSION_GRANTED) {
-//
-//                // Should we show an explanation?
-//                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-//
-//                    // Show an expanation to the user *asynchronously* -- don't block
-//                    // this thread waiting for the user's response! After the user
-//                    // sees the explanation, try again to request the permission.
-//
-//                } else {
-//
-//                    // No explanation needed, we can request the permission.
-//
-//                    ActivityCompat.requestPermissions(this,
-//                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-//                            MY_PERMISSIONS_REQUEST_STORAGE);
-//
-//                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-//                    // app-defined int constant. The callback method gets the
-//                    // result of the request.
-//                }
-//            }
-//            //return;
-//        }
-//
         fotocameraButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //Log.e(TAG, "mBtnShot clicked");
 
+               // animatedCircleLoadingView.stopOk();
+
+
                 apriFoto();
-                //Intent intent = new Intent(Principale.this, GalleryPicker.class);
-                //startActivity(intent);
+
             }
         });
+
+
+
+
     }
 
     @Override
@@ -189,10 +135,7 @@ public class Principale extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select picture"), RESULT_LOAD_IMG);
 
 
-//        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-//                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//        // Start the Intent
-//        startActivityForResult(galleryIntent, RESULT_LOAD_IMG);
+
     }
 
     @Override
@@ -213,87 +156,6 @@ public class Principale extends AppCompatActivity {
                 handleCropResult(data);
             }
 
-
-//
-//                Uri selectedImage = data.getData();
-//                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//                // Get the cursor
-//                Cursor cursor = getContentResolver().query(selectedImage,
-//                        filePathColumn, null, null, null);
-//                // Move to first row
-//                cursor.moveToFirst();
-//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                imgDecodableString = cursor.getString(columnIndex);
-//                cursor.close();
-//
-//                // Get the Image from data
-//                imageUri = data.getData();
-//                //carry out the crop operation
-            //  performCrop();
-
-            //ImageView imgView = (ImageView) findViewById(R.id.imgView);
-            // Set the Image in ImageView after decoding the String
-            // imgView.setImageBitmap(BitmapFactory
-            //       .decodeFile(imgDecodableString));
-
-            //    }
-
-//            if (requestCode == CROPIMAGE){
-//
-//
-//                Bundle extras = data.getExtras();
-//                //get the cropped bitmap
-//                Bitmap thePic = extras.getParcelable("data");
-//
-//
-//
-//                //Write file
-//                String filename = "bitmap.png";
-//                FileOutputStream stream = this.openFileOutput(filename, Context.MODE_PRIVATE);
-//                assert thePic != null;
-//                thePic.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//
-//                //Cleanup
-//                stream.close();
-//                thePic.recycle();
-//
-//                Intent sendFileIntent = new Intent(this, SingleImageActivity/*ModifyPhotoUI*/.class);
-//                sendFileIntent.putExtra("MyPhoto",filename);
-//                startActivity(sendFileIntent);
-//
-//
-//            }
-
-            /*if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-                CropImage.ActivityResult result = CropImage.getActivityResult(data);
-                if (resultCode == RESULT_OK) {
-
-                   Uri resultUri = result.getUri();
-                    imageView.setImageURI(null);
-                    imageView.setImageURI(resultUri);
-                    //Bitmap bMap = result.getBitmap();
-
-
-                    Intent sendFileIntent = new Intent(this, SingleImageActivity*//*ModifyPhotoUI*//*.class);
-                    sendFileIntent.putExtra("MyPhoto",resultUri);
-                    startActivity(sendFileIntent);
-                   // Toast.makeText(getApplicationContext(),  resultUri.toString(), Toast.LENGTH_SHORT).show();
-
-                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                    Exception error = result.getError();
-                }
-            }*/
-//
-//            if (resultCode == RESULT_OK && requestCode == UCrop.REQUEST_CROP) {
-//                final Uri resultUri = UCrop.getOutput(data);
-//                Intent sendFileIntent = new Intent(this, SingleImageActivity/*ModifyPhotoUI*/.class);
-//                sendFileIntent.putExtra("MyPhoto",resultUri);
-//                startActivity(sendFileIntent);
-//
-//
-//            } else if (resultCode == UCrop.RESULT_ERROR) {
-//                final Throwable cropError = UCrop.getError(data);
-//            }
 
         } catch (Exception e) {
             Toast.makeText(this, "perché vai qua?", Toast.LENGTH_LONG)
@@ -319,70 +181,8 @@ public class Principale extends AppCompatActivity {
         UCrop ucrop = UCrop.of(data, Uri.fromFile(new File(getCacheDir(), uri)))
                 .withAspectRatio(1, 1);
         ucrop.start(this);
-        /*try {
 
-            //call the standard crop action intent (the user device may not support it)
-            Intent cropIntent = new Intent("com.android.camera.action.CROP");
-            //indicate image type and Uri
-            cropIntent.setDataAndType(imageUri, "image*//*");
-            //set crop properties
-            cropIntent.putExtra("crop", "true");
-            //indicate aspect of desired crop
-            cropIntent.putExtra("aspectX", 1);
-            cropIntent.putExtra("aspectY", 1);
-            //indicate output X and Y
-            cropIntent.putExtra("outputX", 256);
-            cropIntent.putExtra("outputY", 256);
-            //retrieve data on return
-            cropIntent.putExtra("return-data", true);
-            //start the activity - we handle returning in onActivityResult
-            startActivityForResult(cropIntent, CROPIMAGE);
-
-        }
-        catch(ActivityNotFoundException e){
-            //display an error message
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }*/
     }
 
 
 }
-
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        try {
-//            // When an Image is picked
-//            if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK
-//                    && null != data) {
-//                // Get the Image from data
-//
-//                Uri selectedImage = data.getData();
-//                String[] filePathColumn = { MediaStore.Images.Media.DATA };
-//                // Get the cursor
-//                Cursor cursor = getContentResolver().query(selectedImage,
-//                        filePathColumn, null, null, null);
-//                // Move to first row
-//                cursor.moveToFirst();
-//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                imgDecodableString = cursor.getString(columnIndex);
-//                cursor.close();
-//                Intent sendFileIntent = new Intent(this, SingleImageActivityModifyPhotoUI.class);
-//                sendFileIntent.putExtra("MyPhoto", imgDecodableString);
-//                startActivity(sendFileIntent);
-//                //ImageView imgView = (ImageView) findViewById(R.id.imgView);
-//                // Set the Image in ImageView after decoding the String
-//                // imgView.setImageBitmap(BitmapFactory
-//                //       .decodeFile(imgDecodableString));
-//            } else {
-//                Toast.makeText(this, "You haven't picked Image",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        } catch (Exception e) {
-//            Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG)
-//                    .show();
-//        }
-//    }

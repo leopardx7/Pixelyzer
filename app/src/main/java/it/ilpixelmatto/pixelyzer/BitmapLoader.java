@@ -37,27 +37,27 @@ public class BitmapLoader {
 
 
         mGPUImageFilterGroup = new GPUImageFilterGroup();
-        mMemoryCache = new LruCache<Integer, Bitmap>(cacheSize) {
-            @Override
-            protected int sizeOf(Integer key, Bitmap bitmap) {
-                // The cache size will be measured in kilobytes rather than
-                // number of items.
-                return bitmap.getByteCount() / 1024;
-            }
-        };
+//        mMemoryCache = new LruCache<Integer, Bitmap>(cacheSize) {
+//            @Override
+//            protected int sizeOf(Integer key, Bitmap bitmap) {
+//                // The cache size will be measured in kilobytes rather than
+//                // number of items.
+//                return bitmap.getByteCount() / 1024;
+//            }
+//        };
 
 
     }
 
-    public Bitmap loadBitmapFromFile(String path) {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
+//    public Bitmap loadBitmapFromFile(String path) {
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inJustDecodeBounds = true;
+//
+//        return BitmapFactory.decodeFile(path, options);
+//    }
 
-        return BitmapFactory.decodeFile(path, options);
-    }
 
-
-    public /*Bitmap*/ void addBitmapToMemoryCache(Integer key, Bitmap bitmap) {
+//    public /*Bitmap*/ void addBitmapToMemoryCache(Integer key, Bitmap bitmap) {
 
 //        String filePath = Environment.getExternalStorageDirectory() + "/Pictures/GalleryApp/temp/GA" + key + ".png";
 //
@@ -108,29 +108,29 @@ public class BitmapLoader {
 //
 
 //        if (getBitmapFromMemCache(key) == null) {
-        mMemoryCache.put(key, bitmap);
+//        mMemoryCache.put(key, bitmap);
 //        }
 //        return bitmap;
 
 
-    }
+//    }
 
-    public Bitmap getBitmapFromMemCache(Integer key) {
-//        String filePath = Environment.getExternalStorageDirectory() + "/Pictures/GalleryApp/temp/GA" + key + ".png";
+//    public Bitmap getBitmapFromMemCache(Integer key) {
+////        String filePath = Environment.getExternalStorageDirectory() + "/Pictures/GalleryApp/temp/GA" + key + ".png";
+////
+////       // File file = new File(filePath);
+////
+////
+////        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+////
 //
-//       // File file = new File(filePath);
 //
-//
-//        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
-//
+//        return mMemoryCache.get(key);
+//    }
 
-
-        return mMemoryCache.get(key);
-    }
-
-    public int sizeof() {
-        return mMemoryCache.snapshot().size();
-    }
+//    public int sizeof() {
+//        return mMemoryCache.snapshot().size();
+//    }
 
 
     public GPUImageFilterGroup lala () {

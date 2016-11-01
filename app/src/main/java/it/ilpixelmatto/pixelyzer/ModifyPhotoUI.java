@@ -59,7 +59,7 @@ public class ModifyPhotoUI extends Activity implements View.OnClickListener/*imp
 
         // DEVO FARLO PER RICEVERE DAL UCROP LA ROBA LA SECONDA VOLTA
 
-        Toast.makeText(getApplicationContext(), "CACHE: " + bMapUtils.sizeof(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), "CACHE: " + bMapUtils.sizeof(), Toast.LENGTH_SHORT).show();
 
 
         SeekBar barraLuminosita = (SeekBar) findViewById(R.id.seekBar);
@@ -183,15 +183,15 @@ public class ModifyPhotoUI extends Activity implements View.OnClickListener/*imp
         switch (v.getId()) {
             case R.id.salva:
 
-                bMapUtils.addBitmapToMemoryCache(counter++, mGPUImage.getBitmapWithFilterApplied());
+//                bMapUtils.addBitmapToMemoryCache(counter++, mGPUImage.getBitmapWithFilterApplied());
 
                 break;
             case R.id.indietro:
 
                 mGPUImage.deleteImage();
-                mGPUImage.setImage(bMapUtils.getBitmapFromMemCache(--counter));
+//                mGPUImage.setImage(bMapUtils.getBitmapFromMemCache(--counter));
 
-                Toast.makeText(getApplicationContext(), "CACHE: " + bMapUtils.sizeof(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "CACHE: " + bMapUtils.sizeof(), Toast.LENGTH_SHORT).show();
 
                 break;
 

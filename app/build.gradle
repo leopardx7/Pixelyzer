@@ -21,7 +21,14 @@ android {
 
 repositories {
     jcenter()
+    mavenCentral()
+    mavenLocal()
     maven { url "https://jitpack.io" }
+    maven { url "https://dl.bintray.com/drummer-aidan/maven" }
+    maven { url "http://dl.bintray.com/jlmd/maven" }
+    maven  { url 'https://dl.bintray.com/wangyuwei/maven' }
+
+
 }
 
 dependencies {
@@ -38,6 +45,18 @@ dependencies {
     compile 'com.mukesh:photofilter:1.0.0'
     compile 'com.github.shchurov:HorizontalWheelView:0.9.5'
     compile 'hanks.xyz:smallbang-library:0.1.2'
+
+    //square camera
+
+    compile 'com.github.boxme:squarecamera:1.1.0'
+
+    compile 'com.github.bloder:magic:1.1'
+    compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
+    compile 'com.github.championswimmer:Android-SocialButtons:1.0'
+
+    compile 'com.github.markushi:circlebutton:1.1'
+    compile 'me.wangyuwei:FlipShare:1.0.2'
+    compile 'hanks.xyz:htextview-library:0.1.5'
 
 
 
